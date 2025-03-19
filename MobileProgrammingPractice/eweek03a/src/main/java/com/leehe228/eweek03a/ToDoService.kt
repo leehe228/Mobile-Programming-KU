@@ -23,4 +23,8 @@ class ToDoService(val todoList: MutableList<Item>) {
             }
         }
     }
+
+    fun printOneMemoByIndex(idx: Int = 0) {
+
+    }
 }
