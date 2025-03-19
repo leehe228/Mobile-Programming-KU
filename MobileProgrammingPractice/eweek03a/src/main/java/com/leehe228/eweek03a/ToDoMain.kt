@@ -87,7 +87,10 @@ fun main() {
         val slc: Int = readlnOrNull()?.toIntOrNull() ?: 0
 
         // out of range
-        if (slc < 1 || slc > 5) continue
+        if (slc < 1 || slc > 5) {
+            println("메뉴 선택이 잘못되었습니다.")
+            continue
+        }
 
         when (slc) {
             1 -> {
