@@ -2,23 +2,76 @@ package com.leehe228.practiceweek04e.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@Composable
+fun ColumnLab2(modifier: Modifier = Modifier) {
+    Column(
+        modifier = Modifier.fillMaxSize(), // 부모 크기에 맞추어 해당 Column의 크기를 최대로 확장함
+        verticalArrangement = Arrangement.SpaceEvenly, // 동등 간격으로 간격을 줌 (주축 정렬)
+        horizontalAlignment = Alignment.CenterHorizontally // 가운데 정렬 (교차축 정렬)
+    ) {
+        Box(
+            Modifier
+                .size(100.dp)
+                .background(Color.Green)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(80.dp)
+                .background(Color.Magenta)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(40.dp)
+                .background(Color.Yellow)
+                .border(width = 2.dp, Color.Black)
+        )
+    }
+}
+
+// Preview of ColumnLab2 View
+@Preview
+@Composable
+private fun ColumnLab2Preview() {
+    ColumnLab2()
+}
+
 @Preview
 @Composable
 fun ColumnLab() {
-    Column{
-        Box(Modifier.size(100.dp).background(Color.Green).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(80.dp).background(Color.Magenta).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(40.dp).background(Color.Yellow).border(width = 2.dp, Color.Black))
+    Column {
+        Box(
+            Modifier
+                .size(100.dp)
+                .background(Color.Green)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(80.dp)
+                .background(Color.Magenta)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(40.dp)
+                .background(Color.Yellow)
+                .border(width = 2.dp, Color.Black)
+        )
     }
 }
 
@@ -26,9 +79,24 @@ fun ColumnLab() {
 @Composable
 fun RowLab() {
     Row {
-        Box(Modifier.size(100.dp).background(Color.Green).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(80.dp).background(Color.Magenta).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(40.dp).background(Color.Yellow).border(width = 2.dp, Color.Black))
+        Box(
+            Modifier
+                .size(100.dp)
+                .background(Color.Green)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(80.dp)
+                .background(Color.Magenta)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(40.dp)
+                .background(Color.Yellow)
+                .border(width = 2.dp, Color.Black)
+        )
     }
 }
 
@@ -36,8 +104,23 @@ fun RowLab() {
 @Composable
 fun BoxLab() {
     Box {
-        Box(Modifier.size(100.dp).background(Color.Green).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(80.dp).background(Color.Magenta).border(width = 2.dp, Color.Black))
-        Box(Modifier.size(40.dp).background(Color.Yellow).border(width = 2.dp, Color.Black))
+        Box(
+            Modifier
+                .size(100.dp)
+                .background(Color.Green)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(80.dp)
+                .background(Color.Magenta)
+                .border(width = 2.dp, Color.Black)
+        )
+        Box(
+            Modifier
+                .size(40.dp)
+                .background(Color.Yellow)
+                .border(width = 2.dp, Color.Black)
+        )
     }
 }
