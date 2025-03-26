@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PracticeWeek04E"
 include(":app")
+include(":eweek04a")
