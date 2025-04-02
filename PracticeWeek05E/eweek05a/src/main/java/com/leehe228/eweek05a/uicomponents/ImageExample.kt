@@ -22,7 +22,7 @@ import com.leehe228.eweek05a.R
 @Composable
 private fun RasterImageExample1() {
     Image(
-        painter = painterResource(id = R.drawable.image),
+        painter = painterResource(id = R.drawable.img1),
         contentDescription = null
     )
 }
@@ -30,7 +30,7 @@ private fun RasterImageExample1() {
 @Preview
 @Composable
 private fun RasterImageExample2() {
-    val imageBitmap = ImageBitmap.imageResource(R.drawable.image)
+    val imageBitmap = ImageBitmap.imageResource(R.drawable.img2)
     Image(
         bitmap = imageBitmap,
         contentDescription = null
@@ -41,7 +41,7 @@ private fun RasterImageExample2() {
 @Composable
 private fun VectorImageExample1() {
     Image(
-        painter = painterResource(id = R.drawable.baseline_shopping_cart_24),
+        painter = painterResource(id = R.drawable.baseline_adb_24),
         contentDescription = null
     )
 }
@@ -49,7 +49,7 @@ private fun VectorImageExample1() {
 @Preview
 @Composable
 private fun VectorImageExample2() {
-    val vectorImage = ImageVector.vectorResource(id = R.drawable.baseline_shopping_cart_24)
+    val vectorImage = ImageVector.vectorResource(id = R.drawable.baseline_adb_24)
     Image(
         imageVector = vectorImage,
         contentDescription = null
@@ -70,7 +70,7 @@ private fun AsyncImageExample() {
 @Composable
 private fun AsyncImageExample2() {
     AsyncImage(
-        model = R.drawable.image,
+        model = R.drawable.img3,
         contentDescription = null
     )
 }
