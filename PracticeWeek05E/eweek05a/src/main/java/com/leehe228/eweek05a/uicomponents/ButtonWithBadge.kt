@@ -12,7 +12,7 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -29,7 +29,7 @@ fun ButtonWithBadge(likes: Int, onClick: () -> Unit) {
                 Icons.Default.Favorite,
                 contentDescription = null,
                 tint = if (likes > 0) Color.Red else LocalContentColor.current,
-                modifier = Modifier.clickable { onClick() }
+                modifier = Modifier.clickable { onClick() } // clickable modifier -> click event
             )
         }
     }
@@ -38,6 +38,8 @@ fun ButtonWithBadge(likes: Int, onClick: () -> Unit) {
 @Preview
 @Composable
 private fun ButtonWithBadgePreview() {
-    var likes by remember { mutableStateOf(0) }
-    ButtonWithBadge(likes = likes) { likes++ }
+    var likes by remember { mutableIntStateOf(0) } // type별로 mutable 함수 정의되어 있음
+    ButtonWithBadge(likes = likes) {
+        if (likes == 99) likes = 0 else likes++
+    }
 }

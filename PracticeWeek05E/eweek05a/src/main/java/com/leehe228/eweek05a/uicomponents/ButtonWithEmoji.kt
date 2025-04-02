@@ -7,7 +7,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -33,7 +33,7 @@ fun ButtonWithEmoji(
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = { onClickLikes() }) {
-                Text(text = "❤️", fontSize = 32.sp)
+                Text(text = "👍", fontSize = 32.sp)
             }
             Text(text = likes.toString(), fontSize = 16.sp)
         }
@@ -43,7 +43,7 @@ fun ButtonWithEmoji(
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = { onClickDisLikes() }) {
-                Text(text = "💙", fontSize = 32.sp)
+                Text(text = "👎", fontSize = 32.sp)
             }
             Text(text = dislikes.toString(), fontSize = 16.sp)
         }
@@ -53,8 +53,8 @@ fun ButtonWithEmoji(
 @Preview
 @Composable
 private fun ButtonWithEmojiPreview() {
-    var likes by remember { mutableStateOf(0) }
-    var dislikes by remember { mutableStateOf(0) }
+    var likes by remember { mutableIntStateOf(0) }
+    var dislikes by remember { mutableIntStateOf(0) }
 
     ButtonWithEmoji(likes, dislikes, { likes++ }, { dislikes++ })
 }

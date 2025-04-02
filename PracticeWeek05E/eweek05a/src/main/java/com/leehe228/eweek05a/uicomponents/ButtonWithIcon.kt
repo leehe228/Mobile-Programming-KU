@@ -8,7 +8,7 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
@@ -32,6 +32,7 @@ fun ButtonWithIcon(likes: Int, onClick: () -> Unit) {
 @Preview
 @Composable
 private fun ButtonWithIconPreview() {
-    var likes by remember{ mutableStateOf(0) }
-    ButtonWithIcon(likes = likes, {likes++})
+    var likes by remember{ mutableIntStateOf(0) }
+    // ButtonWithIcon(likes = likes, {likes++})
+    ButtonWithIcon(likes) { likes++ } // lambda 식 밖으로 뺌
 }
