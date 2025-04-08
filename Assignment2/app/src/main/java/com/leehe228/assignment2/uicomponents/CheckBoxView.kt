@@ -22,7 +22,7 @@ fun CheckBoxView(
     imageDataList: SnapshotStateList<ImageData>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = Modifier.fillMaxWidth(),
+    Column(modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

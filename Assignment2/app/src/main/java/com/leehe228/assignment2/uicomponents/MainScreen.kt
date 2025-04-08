@@ -32,7 +32,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             }
         },
         restore = { flat ->
-            flat.chunked(2).map { (imageID, imageName, imageShowing) ->
+            flat.chunked(3).map { (imageID, imageName, imageShowing) ->
                 ImageData(
                     imageID = imageID as Int,
                     imageName = imageName as String,
