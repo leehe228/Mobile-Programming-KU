@@ -19,12 +19,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 image = ImageUri.ResImage(R.drawable.img1),
                 buttonType = ButtonType.BADGE,
                 likes = 50
-            ),
-            ImageData(
-                image = ImageUri.ResImage(R.drawable.img2),
-                buttonType = ButtonType.ICON,
-                likes = 40,
-                dislikes = 3
             )
         )
     }
