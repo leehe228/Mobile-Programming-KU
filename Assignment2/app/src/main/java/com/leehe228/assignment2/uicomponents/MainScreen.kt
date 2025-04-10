@@ -4,7 +4,11 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.listSaver
@@ -15,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.leehe228.assignment2.model.ImageData
 import com.leehe228.assignment2.R
 
@@ -57,21 +62,46 @@ fun MainScreen(modifier: Modifier = Modifier) {
         )
     }
 
-    if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-        Column(modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            ImageView(imageDataList = imageDataList)
-            CheckBoxView(imageDataList = imageDataList)
-        }
-    } else { // orientation == Configuration.ORIENTATION_LANDSCAPE
-        Row(modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Spacer(modifier = Modifier.size(16.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            ImageView(imageDataList = imageDataList)
-            CheckBoxView(imageDataList = imageDataList)
+            Text("컴퓨터공학부 202011353 이호은")
+        }
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                ImageView(
+                    imageDataList = imageDataList,
+                    modifier = Modifier.size(width = 240.dp, height = 240.dp)
+                )
+                Spacer(modifier = Modifier.size(16.dp))
+                CheckBoxView(imageDataList = imageDataList)
+            }
+        } else { // orientation == Configuration.ORIENTATION_LANDSCAPE
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Spacer(modifier = Modifier.size(32.dp))
+                ImageView(
+                    imageDataList = imageDataList,
+                    modifier = Modifier.size(width = 240.dp, height = 240.dp)
+                )
+                Spacer(modifier = Modifier.size(16.dp))
+                CheckBoxView(imageDataList = imageDataList)
+            }
         }
     }
 }

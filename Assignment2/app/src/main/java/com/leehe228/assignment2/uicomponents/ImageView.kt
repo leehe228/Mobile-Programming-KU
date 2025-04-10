@@ -14,12 +14,20 @@ fun ImageView(
     imageDataList: SnapshotStateList<ImageData>,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier) {
-        AsyncImage(model = R.drawable.body, contentDescription = null)
+    Box() {
+        AsyncImage(
+            model = R.drawable.body,
+            contentDescription = null,
+            modifier = modifier
+        )
 
         imageDataList.forEach { imageData ->
             if (imageData.imageShowing) {
-                AsyncImage(model = imageData.imageID, contentDescription = null)
+                AsyncImage(
+                    model = imageData.imageID,
+                    contentDescription = null,
+                    modifier = modifier
+                )
             }
         }
     }
