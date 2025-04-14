@@ -48,6 +48,10 @@ fun RandomColorButton2() {
     val scope = rememberCoroutineScope()
     var color by remember { mutableStateOf(Color.Red) }
 
+    // scope.launch (X)
+    // coroutine 여기서 실행할 수 없음 -> 다른 coroutine 써야 함
+    // recomposition 시마다 coroutine 시작됨
+
     Column {
         Button(
             onClick = {

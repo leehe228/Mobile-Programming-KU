@@ -29,10 +29,11 @@ fun TextLazyColumnFAB(dataList: MutableList<String>, modifier: Modifier = Modifi
     val scope = rememberCoroutineScope()
 
     val showButton by remember {
-        derivedStateOf {
-            state.firstVisibleItemIndex > 0
+        derivedStateOf { // mutableStateOf로 선언 시 초기에 if문 결과값만 저장됨 (false값 가진 상태)
+            state.firstVisibleItemIndex > 0 // LazyList에서 맨 위 (처음) 보여지고 있는 item 인덱스
         }
     }
+    // val showButton = state.firstVisibleItemIndex > 0 
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -49,7 +50,7 @@ fun TextLazyColumnFAB(dataList: MutableList<String>, modifier: Modifier = Modifi
         AnimatedVisibility(visible = showButton) {
             ScrollToTopButton {
                 scope.launch {
-                    state.scrollToItem(0)
+                    state.scrollToItem(0) // 상단으로 이동, suspend 함수
                 }
             }
         }
