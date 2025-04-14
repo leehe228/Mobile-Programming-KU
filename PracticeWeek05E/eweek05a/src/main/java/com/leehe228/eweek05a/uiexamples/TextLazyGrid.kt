@@ -27,7 +27,7 @@ fun TextLazyGrid(dataList: MutableList<String>, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        item(span = { GridItemSpan(maxLineSpan) }){
+        item(span = { GridItemSpan(maxLineSpan) }) {
             Text("Number")
         }
         items(dataList) { item ->

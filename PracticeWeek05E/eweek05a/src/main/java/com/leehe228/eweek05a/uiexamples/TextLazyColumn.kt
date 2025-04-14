@@ -22,7 +22,7 @@ fun TextLazyColumn(dataList: MutableList<String>, modifier: Modifier = Modifier)
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(items = dataList) {item->
+        items(items = dataList) { item ->
             TextCell(text = item, Modifier.background(Color.Cyan))
         }
     }
