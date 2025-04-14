@@ -18,20 +18,20 @@ import kotlin.random.Random
 
 @Composable
 fun RandomColorButton() {
-    val scope = rememberCoroutineScope()
-    var color by remember { mutableStateOf(Color.Red) }
+    val scope = rememberCoroutineScope() // scope instance
+    var color by remember { mutableStateOf(Color.Red) } // state variable
 
     Column {
         Button(
             onClick = {
-                scope.launch {
+                scope.launch { // start coroutine
                     while (true) {
-                        delay(500)
+                        delay(500) // 500ms sleep <- suspend function
                         color = Color(
                             Random.nextInt(0xFF),
                             Random.nextInt(0xFF),
                             Random.nextInt(0xFF),
-                            0xFF
+                            Random.nextInt(0xFF)
                         )
                     }
                 }
@@ -51,21 +51,21 @@ fun RandomColorButton2() {
     Column {
         Button(
             onClick = {
-               val job = scope.launch {
+                val job = scope.launch { // start coroutine, and get job instance (to control)
                     while (true) {
                         delay(500)
                         color = Color(
                             Random.nextInt(0xFF),
                             Random.nextInt(0xFF),
                             Random.nextInt(0xFF),
-                            0xFF
+                            Random.nextInt(0xFF)
                         )
                     }
                 }
 
-                scope.launch {
+                scope.launch { // start coroutine
                     delay(2000)
-                    job.cancel()
+                    job.cancel() // cancel coroutine
                 }
             },
             colors = ButtonDefaults.buttonColors(color)
