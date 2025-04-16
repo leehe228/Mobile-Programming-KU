@@ -5,4 +5,5 @@ sealed class Routes(val route: String) {
     object ScreenA : Routes(route = "A")
     object ScreenB : Routes(route = "B")
     object ScreenC : Routes(route = "C")
+    object ScreenD: Routes(route = "D")
 }

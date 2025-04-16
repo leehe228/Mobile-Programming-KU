@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Screen_A(onNavigate: () -> Unit) {
+fun Screen_A(onNavigateC: () -> Unit, onNavigateD: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -26,9 +26,15 @@ fun Screen_A(onNavigate: () -> Unit) {
         )
 
         Button(onClick = {
-            onNavigate()
+            onNavigateC()
         }) {
             Text(text = "Go to Screen C")
+        }
+        
+        Button(onClick = {
+            onNavigateD()
+        }) {
+            Text(text = "Go to Screen D")
         }
     }
 }

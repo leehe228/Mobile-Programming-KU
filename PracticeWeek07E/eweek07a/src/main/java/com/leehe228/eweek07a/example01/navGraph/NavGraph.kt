@@ -10,6 +10,7 @@ import com.leehe228.eweek07a.example01.uicomponents.HomeScreen
 import com.leehe228.eweek07a.example01.uicomponents.Screen_A
 import com.leehe228.eweek07a.example01.uicomponents.Screen_B
 import com.leehe228.eweek07a.example01.uicomponents.Screen_C
+import com.leehe228.eweek07a.example01.uicomponents.Screen_D
 
 @Composable
 fun NavGraph(
@@ -25,7 +26,10 @@ fun NavGraph(
         }
 
         composable(route = Routes.ScreenA.route) {
-            Screen_A(onNavigate = { navController.navigate(Routes.ScreenC.route) })
+            Screen_A(
+                onNavigateC = { navController.navigate(Routes.ScreenC.route) },
+                onNavigateD = { navController.navigate(Routes.ScreenD.route) }
+            )
         }
 
         composable(route = Routes.ScreenB.route) {
@@ -34,6 +38,10 @@ fun NavGraph(
 
         composable(route = Routes.ScreenC.route) {
             Screen_C(onNavigate = { navController.navigate(Routes.Home.route) })
+        }
+
+        composable(route = Routes.ScreenD.route) {
+            Screen_D()
         }
     }
 }
