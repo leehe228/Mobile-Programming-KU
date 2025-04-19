@@ -37,7 +37,15 @@ fun NavGraph(
         }
 
         composable(route = Routes.ScreenC.route) {
-            Screen_C(onNavigate = { navController.navigate(Routes.Home.route) })
+            Screen_C(onNavigate = {
+                navController.navigate(Routes.Home.route) {
+                    // 뒤로가기 누르면 앱이 꺼지도록
+                    popUpTo(Routes.Home.route) { // Home 바로 위까지 제거 (Home으로 이동)
+                        inclusive = true // Home 포함해서 제거
+                    }
+                    launchSingleTop = true // 엔트리 중복 방지
+                }
+            })
         }
 
         composable(route = Routes.ScreenD.route) {
