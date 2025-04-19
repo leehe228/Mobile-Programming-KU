@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
@@ -51,13 +52,13 @@ fun Register(
         )
 
         OutlinedTextField(
-            value = userIdState ?: "",
+            value = userIdState,
             onValueChange = { userIdState = it },
             label = { Text("User ID") }
         )
 
         OutlinedTextField(
-            value = userPasswdState ?: "",
+            value = userPasswdState,
             onValueChange = { userPasswdState = it },
             label = { Text("Enter password") },
             visualTransformation = PasswordVisualTransformation(),

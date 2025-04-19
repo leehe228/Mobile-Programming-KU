@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.leehe228.eweek07a.example01.uicomponents.MainScreen
+import com.leehe228.eweek07a.example02.uicomponents.LoginMainScreen
 import com.leehe228.eweek07a.ui.theme.PracticeWeek07ETheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PracticeWeek07ETheme {
-                MainScreen()
+                // MainScreen()
+                LoginMainScreen()
             }
         }
     }

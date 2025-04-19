@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(onWelcomeNavigate: () -> Unit, onRegisterNavigate: () -> Unit) {
+fun LoginScreen(onWelcomeNavigate: (String) -> Unit, onRegisterNavigate: (String, String) -> Unit) {
 
     val userId = "greenjoa"
     val userPasswd = "1234"
@@ -34,7 +34,7 @@ fun LoginScreen(onWelcomeNavigate: () -> Unit, onRegisterNavigate: () -> Unit) {
         mutableStateOf("")
     }
 
-    val loginresult by remember {
+    val loginResult by remember {
         derivedStateOf { userId == userIdState && userPasswd == userPasswdState }
     }
 
@@ -60,12 +60,16 @@ fun LoginScreen(onWelcomeNavigate: () -> Unit, onRegisterNavigate: () -> Unit) {
             value = userPasswdState,
             onValueChange = { userPasswdState = it },
             label = { Text("Enter password") },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = PasswordVisualTransformation(), // 비밀번호 보이지 않게
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
 
         Button(onClick = {
-
+            if (loginResult) {
+                onWelcomeNavigate(userIdState)
+            } else {
+                onRegisterNavigate(userIdState, userPasswdState)
+            }
         }) {
             Text(text = "Login")
         }
