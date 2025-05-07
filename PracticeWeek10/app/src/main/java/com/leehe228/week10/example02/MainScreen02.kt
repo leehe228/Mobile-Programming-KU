@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 
 @Composable
 fun MainScreen02(modifier: Modifier = Modifier) {
@@ -29,7 +30,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
 //            val webIntent = Intent(Intent.ACTION_VIEW, web)
             val webIntent = Intent(Intent.ACTION_VIEW).apply {
                 // Intent.setData = Uri.parse("https://www.naver.com")
-                data = Uri.parse("https://www.naver.com")
+                data = "https://www.naver.com".toUri()
             }
             context.startActivity(webIntent)
         }, modifier = Modifier.width(200.dp)) {
@@ -37,7 +38,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
         }
 
         Button(onClick = {
-            val location = Uri.parse("geo:37.543684,127.077130?z=16")
+            val location = "geo:37.543684,127.077130?z=16".toUri()
             val mapIntent = Intent(Intent.ACTION_VIEW, location)
             context.startActivity(mapIntent)
         }, modifier = Modifier.width(200.dp)) {
@@ -45,7 +46,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
         }
 
         Button(onClick = {
-            val message = Uri.parse("sms:010-1234-1234")
+            val message = "sms:010-1234-1234".toUri()
             val messageIntent = Intent(Intent.ACTION_SENDTO, message)
             messageIntent.putExtra("sms_body", "집에 가자....")
             context.startActivity(messageIntent)
@@ -54,7 +55,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
         }
 
         Button(onClick = {
-            val number = Uri.parse("tel:010-1234-1234")
+            val number = "tel:010-1234-1234".toUri()
             val callIntent = Intent(Intent.ACTION_DIAL, number)
             context.startActivity(callIntent)
         }, modifier = Modifier.width(200.dp)) {
