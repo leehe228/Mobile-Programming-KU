@@ -2,15 +2,27 @@ package com.leehe228.week09.example02.uicomponents
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.leehe228.week09.example02.model.Routes
 import com.leehe228.week09.example02.navigation.BottomNavigationBar
 import com.leehe228.week09.example02.navigation.NavGraph
 
@@ -18,14 +30,61 @@ import com.leehe228.week09.example02.navigation.NavGraph
 @Composable
 fun MainScreen2(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute by remember(backStackEntry) {
+        derivedStateOf {
+            backStackEntry?.destination?.route?.let {
+                Routes.getRoutes(it)
+            } ?: run { // null
+                Routes.Home
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "202011353 이호은") }
-            )
+            if (currentRoute.isRoot) {
+                TopAppBar(
+                    title = { Text(text = currentRoute.route) },
+                    navigationIcon = {
+                        IconButton(onClick = { }) {
+                            Icon(
+                                imageVector = Icons.Default.Menu,
+                                contentDescription = ""
+                            )
+                        }
+                    }
+                )
+            } else {
+                TopAppBar(
+                    title = { },
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            navController.popBackStack() // 뒤로가기
+                        }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                                contentDescription = ""
+                            )
+                        }
+                    }
+                )
+            }
         },
         bottomBar = {
-            BottomNavigationBar(navController)
+            if (currentRoute.isRoot) { // isRoot true 인 경우만 BottomBar 보여줌
+                BottomNavigationBar(navController)
+            }
+        },
+        floatingActionButton = {
+            if (currentRoute == Routes.Contacts) {
+                FloatingActionButton(onClick = {
+                    navController.navigate(Routes.AddContacts.route)
+                }) {
+                    Icon(imageVector = Icons.Default.Add, contentDescription = "")
+                }
+            }
         }
     ) { contentPadding ->
         Column(modifier = Modifier.padding(contentPadding)) {

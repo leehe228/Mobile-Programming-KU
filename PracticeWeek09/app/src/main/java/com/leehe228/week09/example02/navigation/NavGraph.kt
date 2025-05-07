@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.leehe228.week09.example02.model.Routes
+import com.leehe228.week09.example02.uicomponents.AddContacts
 import com.leehe228.week09.example02.uicomponents.Contacts
 import com.leehe228.week09.example02.uicomponents.Favorites
 import com.leehe228.week09.example02.uicomponents.Home
@@ -23,6 +24,9 @@ fun NavGraph(navController: NavHostController) {
         }
         composable(Routes.Favorites.route) {
             Favorites()
+        }
+        composable(Routes.AddContacts.route) {
+            AddContacts()
         }
     }
 }
