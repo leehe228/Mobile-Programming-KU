@@ -13,7 +13,7 @@ fun RationaleCallDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("권한 확인 요청") },
-        text = { Text("CALL_PHONE과 CAMERA 권한이 승인 되어야 합니다.") },
+        text = { Text("CALL_PHONE 권한이 승인 되어야 합니다.") },
         confirmButton = {
             Button(onClick = onConfirm) {
                 Text("권한 승인")

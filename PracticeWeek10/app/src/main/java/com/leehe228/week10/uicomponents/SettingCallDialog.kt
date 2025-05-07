@@ -13,7 +13,7 @@ fun SettingCallDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("권한 필요") },
-        text = { Text("전화와 카메라 기능을 사용하려면 앱 설정에서 권한을 허용해 주세요.") },
+        text = { Text("전화 기능을 사용하려면 앱 설정에서 권한을 허용해 주세요.") },
         confirmButton = {
             Button(onClick = onGoToSettings) { Text("설정으로 이동") }
         },

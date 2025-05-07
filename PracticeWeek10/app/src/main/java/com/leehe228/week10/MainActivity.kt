@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.leehe228.week10.example02.MainScreen03
+import com.leehe228.week10.example03.MainScreen04
 import com.leehe228.week10.ui.theme.PracticeWeek10Theme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
 //                        modifier = Modifier.padding(innerPadding)
 //                    )
 //                }
-                MainScreen03()
+                MainScreen04()
             }
         }
     }
