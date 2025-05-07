@@ -2,9 +2,6 @@ package com.leehe228.week10.example02
 
 import android.Manifest
 import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.util.Log.v
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,24 +9,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.accompanist.permissions.shouldShowRationale
 import com.leehe228.week10.functions.makeCall
 import com.leehe228.week10.uicomponents.PermissionButton
-import com.leehe228.week10.uicomponents.RationaleDialog
-import com.leehe228.week10.uicomponents.SettingsDialog
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

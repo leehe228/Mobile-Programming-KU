@@ -2,9 +2,7 @@ package com.leehe228.week10.example02
 
 import android.Manifest
 import android.content.Intent
-import android.net.Uri
 import android.provider.Settings
-import android.util.Log.v
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,8 +25,8 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import com.leehe228.week10.functions.makeCall
-import com.leehe228.week10.uicomponents.RationaleDialog
-import com.leehe228.week10.uicomponents.SettingsDialog
+import com.leehe228.week10.uicomponents.RationaleCallDialog
+import com.leehe228.week10.uicomponents.SettingCallDialog
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -64,7 +62,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
     }
 
     if (showCallDialog) {
-        RationaleDialog(
+        RationaleCallDialog(
             onDismiss = { showCallDialog = false },
             onConfirm = {
                 showCallDialog = false
@@ -74,7 +72,7 @@ fun MainScreen02(modifier: Modifier = Modifier) {
     }
     
     if (showSettingDialog) {
-        SettingsDialog(
+        SettingCallDialog(
             onDismiss = { showSettingDialog = false },
             onGoToSettings = {
                 showSettingDialog = false

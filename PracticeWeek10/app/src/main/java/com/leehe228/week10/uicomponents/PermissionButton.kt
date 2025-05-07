@@ -1,6 +1,5 @@
 package com.leehe228.week10.uicomponents
 
-import android.R.attr.onClick
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -21,10 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.core.net.toUri
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.shouldShowRationale
-import com.leehe228.week10.functions.makeCall
 
 @Composable
 fun PermissionButton(
@@ -85,7 +80,7 @@ fun PermissionButton(
     }
 
     if (showCallDialog) {
-        RationaleDialog(
+        RationaleCallDialog(
             onDismiss = { showCallDialog = false },
             onConfirm = {
                 showCallDialog = false
@@ -95,7 +90,7 @@ fun PermissionButton(
     }
 
     if (showSettingDialog) {
-        SettingsDialog(
+        SettingCallDialog(
             onDismiss = { showSettingDialog = false },
             onGoToSettings = {
                 showSettingDialog = false
