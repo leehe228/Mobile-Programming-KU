@@ -45,8 +45,10 @@ fun NotificationApp() {
     val channelId = "MyTestChannel"
     val notificationId = 0
     val myBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.header)
-    val bigText =
-        "This is my test notification in one line. Made it longer " + "by setting the setStyle property. " + "It should not fit in one line anymore, " + "rather show as a longer notification content."
+    val bigText = "This is my test notification in one line. Made it longer " +
+            "by setting the setStyle property. " +
+            "It should not fit in one line anymore, " +
+            "rather show as a longer notification content."
 
     val postNotificationPermission =
         rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
