@@ -15,6 +15,8 @@ import com.leehe228.week10.example02.MainScreen03
 import com.leehe228.week10.example03.MainScreen04
 import com.leehe228.week10.example04.MainScreen05
 import com.leehe228.week10.example05.NotificationApp
+import com.leehe228.week10.example06.NotificationMainScreen
+import com.leehe228.week10.example06.NotificationNavGraph
 import com.leehe228.week10.ui.theme.PracticeWeek10Theme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
 //                        modifier = Modifier.padding(innerPadding)
 //                    )
 //                }
-                NotificationApp()
+                NotificationNavGraph()
             }
         }
     }

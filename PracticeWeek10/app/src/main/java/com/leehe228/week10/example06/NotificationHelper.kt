@@ -50,9 +50,13 @@ object NotificationHelper {
     fun notify(context: Context, msg: String) {
         val pendingIntent = createPendingIntent(context, msg)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.baseline_access_alarm_24).setContentTitle("일정 알림")
-            .setContentText(msg).setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent).setAutoCancel(true).build()
+            .setSmallIcon(R.drawable.baseline_access_alarm_24)
+            .setContentTitle("일정 알림")
+            .setContentText(msg)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build()
 
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(NOTIFICATION_ID, notification)
