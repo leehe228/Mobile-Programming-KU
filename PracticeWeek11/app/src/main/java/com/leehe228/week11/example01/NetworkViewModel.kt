@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
+import org.jsoup.parser.Parser
 
 class NewsViewModel : ViewModel() {
 
@@ -22,7 +23,8 @@ class NewsViewModel : ViewModel() {
         _isLoading.value = true // show indicator
         viewModelScope.launch {
             try {
-                val fetchedNews = getNews()
+                // val fetchedNews = getNews()
+                val fetchedNews = getJTBCNews()
                 _newsList.clear()
                 _newsList.addAll(fetchedNews)
             } catch (e: Exception) {
@@ -30,6 +32,18 @@ class NewsViewModel : ViewModel() {
             } finally {
                 _isLoading.value = false // hide indicator
             }
+        }
+    }
+
+    private suspend fun getJTBCNews(): List<NewsData> = withContext(Dispatchers.IO) {
+        val doc = Jsoup.connect("https://fs.jtbc.co.kr/RSS/culture.xml")
+            .parser(Parser.xmlParser()).get()
+        val headlines = doc.select("item")
+        headlines.mapNotNull { news ->
+            NewsData(
+                title = news.selectFirst("title")?.text().toString(),
+                newsUrl = news.selectFirst("link")?.text().toString(),
+            )
         }
     }
 
