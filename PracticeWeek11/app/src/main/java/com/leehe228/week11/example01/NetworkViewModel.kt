@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.parser.Parser
 
@@ -27,6 +28,11 @@ class NewsViewModel : ViewModel() {
                 val fetchedNews = getJTBCNews()
                 _newsList.clear()
                 _newsList.addAll(fetchedNews)
+
+                // joke test
+                val joke = getJokes()
+                Log.i("joke", joke)
+
             } catch (e: Exception) {
                 Log.e("error", "fetch 관련 오류 발생", e)
             } finally {
@@ -45,6 +51,14 @@ class NewsViewModel : ViewModel() {
                 newsUrl = news.selectFirst("link")?.text().toString(),
             )
         }
+    }
+
+    private suspend fun getJokes(): String = withContext(Dispatchers.IO) {
+        val doc = Jsoup.connect("https://api.chucknorris.io/jokes/random?categories=food")
+            .ignoreContentType(true).get()
+        val json = JSONObject(doc.text())
+        val joke = json.getString("value")
+        joke
     }
 
     private suspend fun getNews(): List<NewsData> = withContext(Dispatchers.IO) {
