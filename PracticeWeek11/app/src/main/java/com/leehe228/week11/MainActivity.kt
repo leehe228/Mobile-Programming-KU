@@ -12,6 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.leehe228.week11.example01.FetchDaumNews
+import com.leehe228.week11.example01.FetchMelonTop100Songs
+import com.leehe228.week11.example02.ChatGptRepository
+import com.leehe228.week11.example02.ChatScreen
 import com.leehe228.week11.ui.theme.PracticeWeek11Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            FetchDaumNews()
+            ChatScreen()
         }
     }
 }

@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.jsoup)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.material)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
