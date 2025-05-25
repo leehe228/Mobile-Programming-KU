@@ -1,10 +1,16 @@
 package com.leehe228.week11.example01
 
+import android.R.attr.fontWeight
 import android.content.Intent
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
@@ -37,6 +44,32 @@ fun NewsList(list: List<NewsData>) {
     LazyColumn {
         items(list) { item ->
             NewsItem(item)
+            HorizontalDivider(color = Color.Black, thickness = 1.dp)
+        }
+    }
+}
+
+data class SongData(
+    val singerName: String, val songTitle: String
+)
+
+@Composable
+fun SongItem(ranking: Int, song: SongData) {
+    Column (
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.padding(all = 6.dp)
+    ) {
+        Text("$ranking. ${song.songTitle}", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text(song.singerName, fontSize = 14.sp)
+    }
+}
+
+@Composable
+fun SongList(list: List<SongData>) {
+    LazyColumn {
+        itemsIndexed(list) { index, item ->
+            SongItem(ranking = index + 1, song = item)
             HorizontalDivider(color = Color.Black, thickness = 1.dp)
         }
     }

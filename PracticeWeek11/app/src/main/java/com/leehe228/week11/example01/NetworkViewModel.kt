@@ -17,6 +17,9 @@ class NewsViewModel : ViewModel() {
     private val _newsList = mutableStateListOf<NewsData>()
     val newsList = _newsList
 
+    private val _songList = mutableStateListOf<SongData>()
+    val songList = _songList
+
     private val _isLoading = mutableStateOf(false)
     val isLoading = _isLoading
 
@@ -41,6 +44,21 @@ class NewsViewModel : ViewModel() {
         }
     }
 
+    fun fetchSongs() {
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val fetchedSongs = getMelonTop100()
+                _songList.clear()
+                _songList.addAll(fetchedSongs)
+            } catch (e: Exception) {
+                Log.e("error", "fetch 관련 오류 발생", e)
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     private suspend fun getJTBCNews(): List<NewsData> = withContext(Dispatchers.IO) {
         val doc = Jsoup.connect("https://fs.jtbc.co.kr/RSS/culture.xml")
             .parser(Parser.xmlParser()).get()
@@ -59,6 +77,25 @@ class NewsViewModel : ViewModel() {
         val json = JSONObject(doc.text())
         val joke = json.getString("value")
         joke
+    }
+
+    // 실습
+    private suspend fun getMelonTop100(): List<SongData> = withContext(Dispatchers.IO) {
+        val doc = Jsoup.connect("https://www.melon.com/chart/index.htm").get()
+        val rows = doc.select("tr.lst50, tr.lst100")
+        Log.i("song", "row size: ${rows.size}")
+
+        rows.mapNotNull { tr ->
+            val title = tr.selectFirst("div.ellipsis.rank01 > span > a")?.text()?.trim()
+            val singer = tr.selectFirst("div.ellipsis.rank02 > a")?.text()?.trim()
+            Log.i("song", "$title, $singer")
+
+            if (title != null && singer != null) {
+                SongData(singerName = singer, songTitle = title)
+            } else {
+                null
+            }
+        }
     }
 
     private suspend fun getNews(): List<NewsData> = withContext(Dispatchers.IO) {

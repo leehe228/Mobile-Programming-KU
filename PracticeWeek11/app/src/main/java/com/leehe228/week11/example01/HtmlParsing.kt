@@ -43,3 +43,31 @@ fun FetchDaumNews(newsViewModel: NewsViewModel = viewModel()) {
         )
     }
 }
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun FetchMelonTop100Songs(newsViewModel: NewsViewModel = viewModel()) {
+    val songList = newsViewModel.songList
+    val isLoading = newsViewModel.isLoading.value
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isLoading,
+        onRefresh = { newsViewModel.fetchSongs() }
+    )
+
+    LaunchedEffect(Unit) {
+        newsViewModel.fetchSongs()
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .pullRefresh(pullRefreshState)
+    ) {
+        SongList(list = songList)
+        PullRefreshIndicator(
+            refreshing = isLoading,
+            state = pullRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
+    }
+}
