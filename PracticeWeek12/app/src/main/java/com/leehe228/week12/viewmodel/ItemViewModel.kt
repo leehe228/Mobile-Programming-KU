@@ -34,6 +34,22 @@ class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
         }
     }
 
+    fun getAllItemsDesc() {
+        viewModelScope.launch {
+            repository.getAllItemsDesc().collect {
+                _itemList.value = it
+            }
+        }
+    }
+
+    fun getItems(itemName: String) {
+        viewModelScope.launch {
+            repository.getItems(itemName).collect {
+                _itemList.value = it
+            }
+        }
+    }
+
     fun InsertItem(itemEntity: ItemEntity) {
         viewModelScope.launch {
             repository.InsertItem(itemEntity)

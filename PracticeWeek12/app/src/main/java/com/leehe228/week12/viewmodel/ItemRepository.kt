@@ -19,4 +19,8 @@ class ItemRepository(private val db: ItemDatabase) {
     }
 
     fun getAllItems() = dao.getAllItems()
+
+    fun getItems(itemName: String) = dao.getItems(itemName)
+
+    fun getAllItemsDesc() = dao.getAllItemsDesc()
 }

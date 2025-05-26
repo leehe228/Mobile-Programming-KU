@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,7 +19,7 @@ import com.leehe228.week12.roomDB.ItemEntity
 import com.leehe228.week12.viewmodel.ItemViewModel
 
 @Composable
-fun InputScreen(viewModel: ItemViewModel) {
+fun InputScreen(viewModel: ItemViewModel, selectedItem: ItemEntity?) {
     var itemId by remember {
         mutableStateOf("")
     }
@@ -40,6 +41,14 @@ fun InputScreen(viewModel: ItemViewModel) {
         itemName = ""
         itemQuantity = ""
         itemId = ""
+    }
+
+    LaunchedEffect(selectedItem) {
+        selectedItem?.let { item ->
+            itemId = item.itemID.toString()
+            itemName = item.itemName
+            itemQuantity = item.itemQuantity.toString()
+        }
     }
 
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -67,24 +76,32 @@ fun InputScreen(viewModel: ItemViewModel) {
                 viewModel.InsertItem(item)
                 clearText()
             }) {
-                Text("Insert")
+                Text("Ins")
             }
             Button(onClick = {
                 val item = buildItem()
                 viewModel.UpdateItem(item)
                 clearText()
             }) {
-                Text("Update")
+                Text("Upd")
             }
             Button(onClick = {
                 val item = buildItem()
                 viewModel.DeleteItem(item)
                 clearText()
             }) {
-                Text("delete")
+                Text("Del")
             }
-            Button(onClick = { }) {
-                Text("find")
+            Button(onClick = {
+                viewModel.getItems("$itemName%")
+                clearText()
+            }) {
+                Text("Find")
+            }
+            Button(onClick = {
+                viewModel.getAllItemsDesc()
+            }) {
+                Text("Dsc")
             }
         }
     }

@@ -21,4 +21,10 @@ interface ItemDAO {
 
     @Query("select * from ItemTable")
     fun getAllItems(): Flow<List<ItemEntity>>
+
+    @Query("select * from ItemTable where itemName like :itemName")
+    fun getItems(itemName: String): Flow<List<ItemEntity>>
+
+    @Query("select * from ItemTable order by itemQuantity desc")
+    fun getAllItemsDesc(): Flow<List<ItemEntity>>
 }

@@ -1,5 +1,6 @@
 package com.leehe228.week12.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,21 +16,22 @@ import androidx.compose.ui.unit.sp
 import com.leehe228.week12.roomDB.ItemEntity
 
 @Composable
-fun ItemList(list: List<ItemEntity>) {
+fun ItemList(list: List<ItemEntity>, selectedAction: (ItemEntity) -> Unit) {
     LazyColumn {
         items(list) { item ->
-            ItemUI(item)
+            ItemUI(item, selectedAction)
             HorizontalDivider(color = Color.Black, thickness = 2.dp)
         }
     }
 }
 
 @Composable
-fun ItemUI(itemEntity: ItemEntity) {
+fun ItemUI(itemEntity: ItemEntity, selectedAction: (ItemEntity) -> Unit) {
     Column(
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth()
+            .clickable{ selectedAction(itemEntity) }
     ) {
         Text(itemEntity.itemID.toString(), fontSize = 15.sp)
         Text(itemEntity.itemName, fontSize = 15.sp)
