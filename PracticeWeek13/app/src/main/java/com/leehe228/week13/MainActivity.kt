@@ -1,24 +1,34 @@
 package com.leehe228.week13
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.leehe228.week13.ui.theme.PracticeWeek13Theme
 
 class MainActivity : ComponentActivity() {
+    /* val br = BatteryBR()
+
+    override fun onStart() {
+        super.onStart()
+        val intentFilter = IntentFilter(Intent.ACTION_POWER_CONNECTED)
+        intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        this.registerReceiver(br, intentFilter)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.unregisterReceiver(br)
+    } */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        // enableEdgeToEdge()
         setContent {
             PracticeWeek13Theme {
-                //
+                MainScreen()
             }
         }
     }
