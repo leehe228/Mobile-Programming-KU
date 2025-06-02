@@ -1,11 +1,10 @@
 package com.leehe228.week13
 
+import android.app.ComponentCaller
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import com.leehe228.week13.ui.theme.PracticeWeek13Theme
 
 class MainActivity : ComponentActivity() {
@@ -23,13 +22,24 @@ class MainActivity : ComponentActivity() {
         this.unregisterReceiver(br)
     } */
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // enableEdgeToEdge()
+    fun handleIntent(intent: Intent) {
+        val messageSender = intent.getStringExtra("messageSender")
+        val messageBody = intent.getStringExtra("messageBody")
+
         setContent {
             PracticeWeek13Theme {
-                MainScreen()
+                MainScreen(messageSender, messageBody)
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        handleIntent(intent)
     }
 }
