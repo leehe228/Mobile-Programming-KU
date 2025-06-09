@@ -41,6 +41,14 @@ class ItemViewModel(private val repository: ItemRepository) : ViewModel() {
         }
     }
 
+    fun getDescItems() {
+        viewModelScope.launch {
+            repository.getDescItems().collect {
+                _itemList.value = it
+            }
+        }
+    }
+
     fun InsertItem(itemEntity: ItemEntity) {
         viewModelScope.launch {
             repository.InsertItem(itemEntity)

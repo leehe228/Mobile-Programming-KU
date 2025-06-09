@@ -1,6 +1,7 @@
 package com.leehe228.week14.viewmodel
 
 import android.util.Log
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -81,6 +82,20 @@ class ItemRepository(private val table: DatabaseReference) {
             val itemList = snapshot.children.mapNotNull {
                 it.getValue(ItemEntity::class.java)
             }
+            emit(itemList)
+        } catch (e: Exception) {
+            Log.e("get", "failed")
+            emit(emptyList())
+        }
+    }
+
+    suspend fun getDescItems(): Flow<List<ItemEntity>> = flow {
+        try {
+            val snapshot =
+                table.orderByChild("itemName").get().await()
+            val itemList = snapshot.children.mapNotNull {
+                it.getValue(ItemEntity::class.java)
+            }.sortedByDescending { it.itemQuantity }
             emit(itemList)
         } catch (e: Exception) {
             Log.e("get", "failed")

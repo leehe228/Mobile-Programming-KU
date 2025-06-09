@@ -98,11 +98,12 @@ fun InputScreen(viewModel: ItemViewModel, selectedItem: ItemEntity?) {
             }) {
                 Text("Find")
             }
-            /* Button(onClick = {
-                viewModel.getAllItemsDesc()
+            Button(onClick = {
+                viewModel.getDescItems()
+                clearText()
             }) {
                 Text("Dsc")
-            } */
+            }
         }
     }
 }
